@@ -1,0 +1,32 @@
+# Laravel specific
+/vendor/
+/node_modules/
+/public/build/
+/public/hot
+/storage/
+/bootstrap/cache/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Compiled assets
+/public/css/
+/public/js/
+/public/mix-manifest.json
+
+# Environment files
+.env
+.env.*

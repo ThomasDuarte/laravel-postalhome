@@ -1,0 +1,29 @@
+{
+  "plugins": ["@prettier/plugin-php"],
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "printWidth": 80,
+  "bracketSpacing": true,
+  "arrowParens": "avoid",
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": "*.blade.php",
+      "options": {
+        "parser": "html",
+        "tabWidth": 4
+      }
+    },
+    {
+      "files": "*.php",
+      "options": {
+        "parser": "php",
+        "tabWidth": 4,
+        "printWidth": 120,
+        "phpVersion": "8.1"
+      }
+    }
+  ]
+}
