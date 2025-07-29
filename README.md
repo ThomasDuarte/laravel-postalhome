@@ -21,6 +21,7 @@
 ## 🛠️ Installation
 
 ### Prérequis
+
 - PHP 8.1+
 - Composer
 - Node.js & NPM
@@ -29,35 +30,40 @@
 ### Étapes d'installation
 
 1. **Cloner le repository**
+
    ```bash
    git clone https://github.com/VOTRE_USERNAME/laravel-postalhome.git
    cd laravel-postalhome
    ```
 
 2. **Installer les dépendances**
+
    ```bash
    composer install
    npm install
    ```
 
 3. **Configuration de l'environnement**
+
    ```bash
    cp .env.example .env
    php artisan key:generate
    ```
 
 4. **Configuration de la database**
-   
+
    **Option A - Docker :**
+
    ```bash
    docker run --name laravel-mariadb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=tuto_graven -p 3306:3306 -d mariadb:latest
    ```
-   
+
    **Option B - XAMPP :**
    - Démarrer XAMPP
    - Créer une base de données `tuto_graven`
 
 5. **Migrations**
+
    ```bash
    php artisan migrate
    ```

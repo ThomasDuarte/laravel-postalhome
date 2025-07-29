@@ -258,15 +258,15 @@
             </div>
             
             <div class="form-group">
-                <label for="weigth">
+                <label for="weight">
                     <span>Poids du colis (en grammes)</span>
                 </label>
                 <div class="input-icon weight">
                     <input 
                         type="number" 
-                        id="weigth"
-                        name="weigth" 
-                        value="{{ old('weigth') }}" 
+                        id="weight"
+                        name="weight" 
+                        value="{{ old('weight') }}" 
                         placeholder="270"
                         min="1"
                         required

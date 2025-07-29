@@ -24,11 +24,12 @@ class ParcelController extends Controller
     public function register_new_parcel(Request $request)
     {
 
+        $tracking_number = rand(100000000, 999999999);
         //valider les champs du formulaire
         $validator = Validator::make($request->all(), [
             'address_dep' => 'required|string|max:255',
             'address_arr' => 'required|string|max:255',
-            'weigth' => 'required|numeric|min:1',
+            'weight' => 'required|numeric|min:1',
         ]);
 
         if ($validator->fails()) {
@@ -39,10 +40,27 @@ class ParcelController extends Controller
         $parcel = Parcel::create([
             'address_dep' => $request->address_dep,
             'address_arr' => $request->address_arr,
-            'weigth' => $request->weigth,
+            'weight' => $request->weight,
+            'tracking_number' => $tracking_number,
         ]);
 
-        $message = 'Colis enregistré !';
+        $message = 'Colis enregistré ! Numéro de suivi : ' .$tracking_number;
         return view('register', compact('message'));
+    }
+
+    public function tracking_index(){
+        return view('tracking');
+    }
+
+    public function tracking_search(Request $request){
+        $trackingNumber = $request->tracking_number;
+        $parcel = Parcel::where('tracking_number', $trackingNumber)->first();
+
+        if(!$parcel){
+            $error = "Aucun colis trouvé avec ce numéro de suivi.";
+            return view('tracking', compact('error'));
+        }
+        
+        return view('tracking', compact('parcel'));
     }
 }

@@ -109,6 +109,58 @@
             text-align: center;
         }
 
+        .cta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .cta-card {
+            background: white;
+            border-radius: 25px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 400px;
+        }
+
+        .cta-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .cta-card.primary {
+            background: white;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .cta-card.secondary {
+            background: white;
+            border: 2px solid rgba(79, 172, 254, 0.2);
+        }
+
+        .cta-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .cta-button-container {
+            margin-top: auto;
+            padding-top: 20px;
+        }
+
+        .cta-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
         .cta-title {
             font-size: 2rem;
             color: #333;
@@ -128,15 +180,32 @@
 
         .btn-primary {
             display: inline-block;
-            padding: 20px 40px;
+            padding: 18px 35px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             text-decoration: none;
             border-radius: 15px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            padding: 18px 35px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(79, 172, 254, 0.3);
+            width: 100%;
+            max-width: 250px;
         }
 
         .btn-primary:hover {
@@ -146,8 +215,25 @@
             color: white;
         }
 
-        .btn-primary:active {
+        .btn-secondary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(79, 172, 254, 0.4);
+            text-decoration: none;
+            color: white;
+        }
+
+        .btn-primary:active,
+        .btn-secondary:active {
             transform: translateY(-2px);
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 10px;
         }
 
         .features {
@@ -223,18 +309,33 @@
                 padding: 30px 15px;
             }
             
-            .stats-section,
-            .cta-section {
+            .stats-section {
                 padding: 30px 25px;
+            }
+            
+            .cta-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .cta-card {
+                padding: 35px 25px;
+                min-height: 350px;
+            }
+            
+            .cta-button-container {
+                padding-top: 15px;
             }
             
             .feature-card {
                 padding: 25px 20px;
             }
             
-            .btn-primary {
-                padding: 18px 35px;
-                font-size: 1.1rem;
+            .btn-primary,
+            .btn-secondary {
+                padding: 16px 30px;
+                font-size: 1rem;
+                max-width: 220px;
             }
         }
 
@@ -249,6 +350,18 @@
             
             .hero-title {
                 font-size: 2rem;
+            }
+            
+            .cta-card {
+                padding: 30px 20px;
+                min-height: 320px;
+            }
+            
+            .btn-primary,
+            .btn-secondary {
+                padding: 15px 25px;
+                font-size: 0.95rem;
+                max-width: 200px;
             }
         }
     </style>
@@ -288,17 +401,40 @@
             @endif
         </div>
 
-        <div class="cta-section">
-            <h2 class="cta-title">Prêt à expédier ?</h2>
-            <p class="cta-description">
-                Enregistrez votre nouveau colis en quelques clics. 
-                Service rapide, sécurisé et suivi en temps réel.
-            </p>
-            <a href="{{ url('/register') }}" class="btn-primary">
-                📮 Enregistrer un Nouveau Colis
-            </a>
+        <div class="cta-grid">
+            <div class="cta-card primary">
+                <div class="cta-content">
+                    <span class="cta-icon">📮</span>
+                    <h2 class="cta-title">Expédier un Colis</h2>
+                    <p class="cta-description">
+                        Enregistrez votre nouveau colis en quelques clics. 
+                        Service rapide, sécurisé et suivi en temps réel.
+                    </p>
+                </div>
+                <div class="cta-button-container">
+                    <a href="{{ url('/register') }}" class="btn-primary">
+                        Enregistrer un Colis
+                    </a>
+                </div>
+            </div>
+            
+            <div class="cta-card secondary">
+                <div class="cta-content">
+                    <span class="cta-icon">🔍</span>
+                    <h2 class="cta-title">Suivre un Colis</h2>
+                    <p class="cta-description">
+                        Localisez votre colis en temps réel grâce à votre numéro de suivi. 
+                        Statut et position mis à jour instantanément.
+                    </p>
+                </div>
+                <div class="cta-button-container">
+                    <a href="{{ url('/tracking') }}" class="btn-secondary">
+                        Suivre mon Colis
+                    </a>
+                </div>
+            </div>
         </div>
-
+        
         <div class="features">
             <div class="feature-card">
                 <span class="feature-icon">🚚</span>
