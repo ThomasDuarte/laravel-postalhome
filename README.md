@@ -1,13 +1,94 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📦 Postalhome - Laravel Parcel Management
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+> Application Laravel moderne pour la gestion d'envoi de colis avec interface utilisateur responsive.
 
-## About Laravel
+## 🌟 Fonctionnalités
+
+- ✅ **Enregistrement de colis** avec validation des données
+- ✅ **Interface moderne** avec design responsive
+- ✅ **Gestion des erreurs** avec messages utilisateur-friendly
+- ✅ **Base de données MariaDB** avec migrations Laravel
+- ✅ **Validation côté serveur** avec feedback visuel
+- ✅ **Design mobile-first** compatible tous appareils
+
+## 🚀 Technologies utilisées
+
+- **Framework** : Laravel 11
+- **Base de données** : MariaDB
+- **Frontend** : HTML5, CSS3, JavaScript vanilla
+- **Outils** : Prettier, Docker, Composer, NPM
+
+## 🛠️ Installation
+
+### Prérequis
+- PHP 8.1+
+- Composer
+- Node.js & NPM
+- MariaDB ou Docker
+
+### Étapes d'installation
+
+1. **Cloner le repository**
+   ```bash
+   git clone https://github.com/VOTRE_USERNAME/laravel-postalhome.git
+   cd laravel-postalhome
+   ```
+
+2. **Installer les dépendances**
+   ```bash
+   composer install
+   npm install
+   ```
+
+3. **Configuration de l'environnement**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+
+4. **Configuration de la database**
+   
+   **Option A - Docker :**
+   ```bash
+   docker run --name laravel-mariadb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=tuto_graven -p 3306:3306 -d mariadb:latest
+   ```
+   
+   **Option B - XAMPP :**
+   - Démarrer XAMPP
+   - Créer une base de données `tuto_graven`
+
+5. **Migrations**
+   ```bash
+   php artisan migrate
+   ```
+
+6. **Démarrer le serveur**
+   ```bash
+   php artisan serve
+   ```
+
+## 🎨 Formatage du code
+
+Le projet utilise Prettier pour le formatage automatique :
+
+```bash
+# Formater tout le projet
+npm run format
+
+# Formater seulement les fichiers PHP
+npm run format:php
+
+# Vérifier le formatage
+npm run format:check
+```
+
+## 👨‍💻 Auteur
+
+**Thomas** - Développement initial
+
+---
+
+⭐ N'hésitez pas à star le projet si vous le trouvez utile !
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 

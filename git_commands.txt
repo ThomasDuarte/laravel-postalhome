@@ -1,0 +1,10 @@
+# Commandes à exécuter après avoir créé le repo sur GitHub:
+
+# Ajouter l'origine remote (remplacez VOTRE_USERNAME)
+git remote add origin https://github.com/VOTRE_USERNAME/laravel-postalhome.git
+
+# Renommer la branche principale en main (standard GitHub)
+git branch -M main
+
+# Pousser le code vers GitHub
+git push -u origin main
