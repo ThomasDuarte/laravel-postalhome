@@ -27,3 +27,22 @@ Thumbs.db
 explore_db.php
 monitor_db.sh
 .vscode/settings_simple.json
+
+# Fichiers temporaires et de test
+test_connection.php
+debug.log
+*.tmp
+test*.php
+
+# Logs
+storage/logs/*.log
+
+# Cache
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/views/*
+
+# Variables d'environnement
+.env
+.env.backup
+.env.production

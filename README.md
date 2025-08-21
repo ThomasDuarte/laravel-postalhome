@@ -6,17 +6,18 @@ Application Laravel pour la gestion et le suivi de colis avec interface d'admini
 
 - ✅ Création et suivi de colis
 - ✅ Gestion des adresses de départ et d'arrivée
-- ✅ Système de numéros de tracking
-- ✅ Gestion du poids des colis
-- ✅ Interface d'administration
+- ✅ Système de numéros de tracking automatiques
+- ✅ Gestion du poids des colis (en kg)
+- ✅ Interface d'administration intuitive
 - ✅ Base de données MariaDB/MySQL
+- ✅ Migrations automatisées
 
 ## 📋 Prérequis
 
-- PHP 8.1+
-- Composer
-- Node.js & NPM
-- MySQL/MariaDB
+- PHP 8.1+ avec extensions : `pdo_mysql`, `mbstring`, `openssl`
+- Composer 2.0+
+- Node.js 16+ & NPM
+- MySQL 8.0+ ou MariaDB 10.3+
 
 ## 🛠️ Installation
 
@@ -30,8 +31,8 @@ cd postalhome
 ### 2. Installer les dépendances
 
 ```bash
-composer install
-npm install
+composer install --optimize-autoloader
+npm install && npm run build
 ```
 
 ### 3. Configuration de l'environnement
@@ -46,31 +47,39 @@ php artisan key:generate
 Modifiez votre fichier `.env` :
 
 ```properties
+APP_NAME=PostalHome
+APP_ENV=local
+APP_DEBUG=true
+APP_URL=http://localhost:8000
+
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=postalhome
 DB_USERNAME=your_username
 DB_PASSWORD=your_password
+
+# Sessions en fichier pour simplicité
+SESSION_DRIVER=file
+CACHE_DRIVER=file
 ```
 
 ### 5. Créer la base de données
 
 ```sql
-CREATE DATABASE postalhome;
+CREATE DATABASE postalhome CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
 ### 6. Lancer les migrations
 
 ```bash
-php artisan migrate
+php artisan migrate --seed
 ```
 
 ### 7. Lancer le serveur de développement
 
 ```bash
 php artisan serve
-npm run dev
 ```
 
 Accédez à l'application : `http://localhost:8000`
@@ -79,25 +88,61 @@ Accédez à l'application : `http://localhost:8000`
 
 ### Table `parcels`
 
-- `id` : Identifiant unique
-- `address_dep` : Adresse de départ
-- `address_arr` : Adresse d'arrivée
-- `weight` : Poids du colis (decimal)
-- `tracking_number` : Numéro de suivi
-- `status` : Statut du colis
-- `created_at` / `updated_at` : Timestamps
+| Colonne           | Type         | Description                        |
+| ----------------- | ------------ | ---------------------------------- |
+| `id`              | bigint       | Identifiant unique auto-incrémenté |
+| `address_dep`     | string       | Adresse complète de départ         |
+| `address_arr`     | string       | Adresse complète d'arrivée         |
+| `weight`          | decimal(8,2) | Poids du colis en kilogrammes      |
+| `tracking_number` | string       | Numéro de suivi unique             |
+| `status`          | string       | Statut du colis                    |
+| `created_at`      | timestamp    | Date de création                   |
+| `updated_at`      | timestamp    | Date de dernière modification      |
 
-## 🔧 Migrations disponibles
+## 🔧 Commandes utiles
 
-- `add_weight_to_parcels_table` : Ajoute la colonne poids
-- `remove_weigth_column_from_parcels_table` : Supprime l'ancienne colonne mal orthographiée
+```bash
+# Vider le cache
+php artisan config:clear
+php artisan cache:clear
+
+# Voir le statut des migrations
+php artisan migrate:status
+
+# Accéder aux données via Tinker
+php artisan tinker
+```
 
 ## 🐳 Déploiement avec Docker
 
 ```dockerfile
-# Exemple de configuration Docker
 FROM php:8.1-fpm
-# ... configuration Docker
+RUN docker-php-ext-install pdo pdo_mysql
+COPY . /var/www/html
+WORKDIR /var/www/html
+RUN composer install --optimize-autoloader --no-dev
+```
+
+## 🔒 Sécurité
+
+- ✅ Clés d'application générées automatiquement
+- ✅ Protection CSRF intégrée
+- ✅ Validation des données utilisateur
+- ✅ Pas d'informations sensibles dans le code
+
+## 🐛 Dépannage
+
+### Erreur de connexion base de données
+
+```bash
+php artisan config:clear
+# Vérifiez vos paramètres .env
+```
+
+### Erreur de migration
+
+```bash
+php artisan migrate:fresh
 ```
 
 ## 🤝 Contribution
@@ -105,15 +150,19 @@ FROM php:8.1-fpm
 Les contributions sont les bienvenues ! Merci de :
 
 1. Fork le projet
-2. Créer une branche pour votre fonctionnalité
-3. Commiter vos changements
-4. Push vers la branche
+2. Créer une branche : `git checkout -b feature/ma-fonctionnalite`
+3. Commiter : `git commit -m "feat: ajouter ma fonctionnalité"`
+4. Push : `git push origin feature/ma-fonctionnalite`
 5. Ouvrir une Pull Request
 
 ## 📝 License
 
-Ce projet est sous licence MIT.
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
 ## 🆘 Support
 
-Pour toute question ou problème, ouvrez une issue sur GitHub.
+Pour toute question ou problème, ouvrez une issue sur GitHub avec :
+
+- Version de PHP utilisée
+- Message d'erreur complet
+- Étapes pour reproduire le problème
