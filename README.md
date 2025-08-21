@@ -1,148 +1,119 @@
-# 📦 Postalhome - Laravel Parcel Management
+# PostalHome - Application de Gestion de Colis
 
-> Application Laravel moderne pour la gestion d'envoi de colis avec interface utilisateur responsive.
+Application Laravel pour la gestion et le suivi de colis avec interface d'administration.
 
-## 🌟 Fonctionnalités
+## 🚀 Fonctionnalités
 
-- ✅ **Enregistrement de colis** avec validation des données
-- ✅ **Interface moderne** avec design responsive
-- ✅ **Gestion des erreurs** avec messages utilisateur-friendly
-- ✅ **Base de données MariaDB** avec migrations Laravel
-- ✅ **Validation côté serveur** avec feedback visuel
-- ✅ **Design mobile-first** compatible tous appareils
+- ✅ Création et suivi de colis
+- ✅ Gestion des adresses de départ et d'arrivée
+- ✅ Système de numéros de tracking
+- ✅ Gestion du poids des colis
+- ✅ Interface d'administration
+- ✅ Base de données MariaDB/MySQL
 
-## 🚀 Technologies utilisées
-
-- **Framework** : Laravel 11
-- **Base de données** : MariaDB
-- **Frontend** : HTML5, CSS3, JavaScript vanilla
-- **Outils** : Prettier, Docker, Composer, NPM
-
-## 🛠️ Installation
-
-### Prérequis
+## 📋 Prérequis
 
 - PHP 8.1+
 - Composer
 - Node.js & NPM
-- MariaDB ou Docker
+- MySQL/MariaDB
 
-### Étapes d'installation
+## 🛠️ Installation
 
-1. **Cloner le repository**
-
-   ```bash
-   git clone https://github.com/VOTRE_USERNAME/laravel-postalhome.git
-   cd laravel-postalhome
-   ```
-
-2. **Installer les dépendances**
-
-   ```bash
-   composer install
-   npm install
-   ```
-
-3. **Configuration de l'environnement**
-
-   ```bash
-   cp .env.example .env
-   php artisan key:generate
-   ```
-
-4. **Configuration de la database**
-
-   **Option A - Docker :**
-
-   ```bash
-   docker run --name laravel-mariadb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=tuto_graven -p 3306:3306 -d mariadb:latest
-   ```
-
-   **Option B - XAMPP :**
-   - Démarrer XAMPP
-   - Créer une base de données `tuto_graven`
-
-5. **Migrations**
-
-   ```bash
-   php artisan migrate
-   ```
-
-6. **Démarrer le serveur**
-   ```bash
-   php artisan serve
-   ```
-
-## 🎨 Formatage du code
-
-Le projet utilise Prettier pour le formatage automatique :
+### 1. Cloner le projet
 
 ```bash
-# Formater tout le projet
-npm run format
-
-# Formater seulement les fichiers PHP
-npm run format:php
-
-# Vérifier le formatage
-npm run format:check
+git clone https://github.com/votre-username/postalhome.git
+cd postalhome
 ```
 
-## 👨‍💻 Auteur
+### 2. Installer les dépendances
 
-**Thomas** - Développement initial
+```bash
+composer install
+npm install
+```
 
----
+### 3. Configuration de l'environnement
 
-⭐ N'hésitez pas à star le projet si vous le trouvez utile !
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 4. Configuration de la base de données
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Modifiez votre fichier `.env` :
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```properties
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=postalhome
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
 
-## Learning Laravel
+### 5. Créer la base de données
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```sql
+CREATE DATABASE postalhome;
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 6. Lancer les migrations
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+php artisan migrate
+```
 
-## Laravel Sponsors
+### 7. Lancer le serveur de développement
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+php artisan serve
+npm run dev
+```
 
-### Premium Partners
+Accédez à l'application : `http://localhost:8000`
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## 📊 Structure de la base de données
 
-## Contributing
+### Table `parcels`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- `id` : Identifiant unique
+- `address_dep` : Adresse de départ
+- `address_arr` : Adresse d'arrivée
+- `weight` : Poids du colis (decimal)
+- `tracking_number` : Numéro de suivi
+- `status` : Statut du colis
+- `created_at` / `updated_at` : Timestamps
 
-## Code of Conduct
+## 🔧 Migrations disponibles
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- `add_weight_to_parcels_table` : Ajoute la colonne poids
+- `remove_weigth_column_from_parcels_table` : Supprime l'ancienne colonne mal orthographiée
 
-## Security Vulnerabilities
+## 🐳 Déploiement avec Docker
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```dockerfile
+# Exemple de configuration Docker
+FROM php:8.1-fpm
+# ... configuration Docker
+```
 
-## License
+## 🤝 Contribution
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Les contributions sont les bienvenues ! Merci de :
+
+1. Fork le projet
+2. Créer une branche pour votre fonctionnalité
+3. Commiter vos changements
+4. Push vers la branche
+5. Ouvrir une Pull Request
+
+## 📝 License
+
+Ce projet est sous licence MIT.
+
+## 🆘 Support
+
+Pour toute question ou problème, ouvrez une issue sur GitHub.
